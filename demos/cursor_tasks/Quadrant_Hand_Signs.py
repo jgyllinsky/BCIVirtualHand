@@ -118,20 +118,31 @@ def main(args):
 	# test to see if it can load the images
 	
 	print("Testing display output. Press any key to continue.")
-	while True:
+	keepgoing = True
+	while keepgoing:
 		for event in pygame.event.get():
 			if (event.type == pygame.QUIT): 
-				#sys.exit()
-				break
-			# ~ elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT): 
-			elif (event.type == pygame.KEYDOWN): 
+				keepgoing = False
+			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT): 
+			# ~ elif (event.type == pygame.KEYDOWN): 
 				#sys.exit()		
-				break
+				keepgoing = False
 		
 	print("If you got to this point, the display probably works.")
-
 	
-	while True:
+	# ~ sys.exit()	
+	
+	keepgoing = True
+	while keepgoing:
+		for event in pygame.event.get():
+			if (event.type == pygame.QUIT): 
+				# ~ sys.exit()
+				keepgoing = False
+			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT): 
+			# ~ elif (event.type == pygame.KEYDOWN): 
+				# ~ sys.exit()		
+				keepgoing = False
+				
 		print ('X,Y = ' + str(myX) + ' , ' + str(myY)+ ' ( Q' + str(hand_state) +') at loop #: ' +str(counter))
 		
 		picture = pictures[0]
