@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  untitled.py
+#  Quadrant_Hand_Signs.py
 #  
 #  Copyright 2019 Joshua Gyllinsky  <jgyllinsky@my.uri.edu>
 #  
@@ -65,7 +65,7 @@ counter = 0
 ### Location of Cursor Variables
 myX = 0
 myY = 0
-hand_state = "state_01"
+hand_state = "Q1"
 
 MAX_Y = 1
 MAX_X = 0
