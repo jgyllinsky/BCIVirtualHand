@@ -77,16 +77,56 @@ def main(args):
 	### Location of Cursor Variables
 	myX = 0
 	myY = 0
-	hand_state = "Q1"
+	hand_state = 1
 
 	MAX_Y = 1
 	MAX_X = 0
 	MIN_Y = 1
 	MIN_X = 0
 
+
+	### Images
+	images = []
+	#image_dir=os.path.join(os.environ['HOME'],'Pictures')
+	image_dir='.'
+
+	dirlist = os.listdir(image_dir)
+	for f in dirlist:
+		if f.endswith('.jpg'):
+			images.append(os.path.join(image_dir,f))
+	main_surface = pygame.display.set_mode((1280,1024),FULLSCREEN)
+	
+	number_of_images = (len(images))
+
+	if(number_of_images != 4):
+		sys.exit()
 		
+	
+	source_pictures = [pygame.image.load(images[0]),pygame.image.load(images[1]),pygame.image.load(images[2]),pygame.image.load(images[3])]
+	
+	pictures = source_pictures
+	
+	for i in range(number_of_images):
+		# ~ pictures = pictures + pygame.image.load(images)
+		pictures[i] = pygame.transform.scale(source_pictures[i],(1280,1024))
+		
+	# ~ sys.exit()
+	picture = pictures[0]
+	main_surface.blit(picture, (0, 0))
+	pygame.display.update()
+
+
 	while True:
-		print ('X,Y = ' + str(myX) + ' , ' + str(myY)+ ' (' + hand_state +') at loop #: ' +str(counter))
+		for event in pygame.event.get():
+			if (event.type == pygame.QUIT): 
+				sys.exit()
+			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT): 
+				sys.exit()		
+
+	sys.exit()	
+	
+	while True:
+		print ('X,Y = ' + str(myX) + ' , ' + str(myY)+ ' ( Q' + str(hand_state) +') at loop #: ' +str(counter))
 		try:
 			d = serverSock.recvfrom(1024)
 		except socket.timeout:
@@ -138,14 +178,18 @@ def main(args):
 		
 			if((myX) <= (MAX_X/2)):
 				if((myY) <= (MAX_Y/2)):
-					hand_state = "QII"
+					# ~ hand_state = "QII"
+					hand_state = 2
 				else:
-					hand_state = "QIII"
+					# ~ hand_state = "QIII"
+					hand_state = 3
 			else:
 				if((myY) <= (MAX_Y/2)):
-					hand_state = "QI"
+					# ~ hand_state = "QI"
+					hand_state = 1
 				else:
-					hand_state = "QIV"
+					# ~ hand_state = "QIV"
+					hand_state = 4
 				
 				   
 	serverSock.close()    
