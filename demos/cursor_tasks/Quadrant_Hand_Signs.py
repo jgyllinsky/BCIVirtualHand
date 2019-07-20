@@ -111,22 +111,34 @@ def main(args):
 		pictures[i] = pygame.transform.scale(source_pictures[i],(1280,1024))
 		
 	# ~ sys.exit()
-	picture = pictures[0]
+	picture = pictures[hand_state]
 	main_surface.blit(picture, (0, 0))
 	pygame.display.update()
 
-
+	# test to see if it can load the images
+	
+	print("Testing display output. Press any key to continue.")
 	while True:
 		for event in pygame.event.get():
 			if (event.type == pygame.QUIT): 
-				sys.exit()
-			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT): 
-				sys.exit()		
+				#sys.exit()
+				break
+			# ~ elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT): 
+			elif (event.type == pygame.KEYDOWN): 
+				#sys.exit()		
+				break
+		
+	print("If you got to this point, the display probably works.")
 
-	sys.exit()	
 	
 	while True:
 		print ('X,Y = ' + str(myX) + ' , ' + str(myY)+ ' ( Q' + str(hand_state) +') at loop #: ' +str(counter))
+		
+		picture = pictures[0]
+		main_surface.blit(picture, (0, 0))
+		pygame.display.update()
+		
+		
 		try:
 			d = serverSock.recvfrom(1024)
 		except socket.timeout:
