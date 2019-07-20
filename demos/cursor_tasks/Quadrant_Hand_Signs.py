@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  Quadrant_Hand_Signs.py
+#  untitled.py
 #  
 #  Copyright 2019 Joshua Gyllinsky  <jgyllinsky@my.uri.edu>
 #  
@@ -78,7 +78,8 @@ while True:
 		d = serverSock.recvfrom(1024)
 	except socket.timeout:
 		print ('caught a timeout...')
-	
+		#continue
+		continue
 		
 	if(d):
 		data = d[0]
@@ -100,23 +101,38 @@ while True:
 
 
 		if( 'CursorPosX'.encode() in val ):
-			#print val
-			#print val.lstrip().split()
 			obj = val.decode().lstrip().split()
-			myX = obj[1]
+			myX = int(obj[1])
 			#print 'X = ' + str(myX)
 		if( 'CursorPosY'.encode() in val ):
-			#print val
-			#print val.lstrip().split()
 			obj = val.decode().lstrip().split()
-			myY = obj[1]
-			#print 'Y = ' + str(obj[1])
+			myY = int(obj[1])
 	
-		if(int(myX) >= 3200):
-			hand_state = "Open"
 
-		if(int(myX) <= 900):
-			hand_state = "Close"
+	
+		if(myX > MAX_X):
+			MAX_X = myX
+	
+		if(myY > MAX_Y):
+			MAX_Y = myY
+			
+		if(myX < MAX_X):
+			MIN_X = myX
+	
+		if(myY < MAX_Y):
+			MIN_Y = myY
+
+	
+		if((myX) <= (MAX_X/2)):
+			if((myY) <= (MAX_Y/2)):
+				hand_state = "QII"
+			else:
+				hand_state = "QIII"
+		else:
+			if((myY) <= (MAX_Y/2)):
+				hand_state = "QI"
+			else:
+				hand_state = "QIV"
 			
 			   
 serverSock.close()    
