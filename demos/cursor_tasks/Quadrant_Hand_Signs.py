@@ -113,13 +113,9 @@ while True:
 			#print 'Y = ' + str(obj[1])
 	
 		if(int(myX) >= 3200):
-			ser.write("1\r\n".encode())
-			#cc=str(ser.readline())
-			#print (cc[2:][:-5])
 			hand_state = "Open"
 
 		if(int(myX) <= 900):
-			ser.write("2\r\n".encode())
 			hand_state = "Close"
 			
 			   
