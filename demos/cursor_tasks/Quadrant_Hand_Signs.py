@@ -123,7 +123,7 @@ def main(args):
 		for event in pygame.event.get():
 			if (event.type == pygame.QUIT): 
 				keepgoing = False
-			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT): 
+			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE): 
 			# ~ elif (event.type == pygame.KEYDOWN): 
 				#sys.exit()		
 				keepgoing = False
@@ -138,7 +138,7 @@ def main(args):
 			if (event.type == pygame.QUIT): 
 				# ~ sys.exit()
 				keepgoing = False
-			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT): 
+			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE): 
 			# ~ elif (event.type == pygame.KEYDOWN): 
 				# ~ sys.exit()		
 				keepgoing = False
