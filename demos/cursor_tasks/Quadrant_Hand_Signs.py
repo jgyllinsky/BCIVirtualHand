@@ -73,15 +73,14 @@ def main(args):
 	counter = 0
 
 
-
 	### Location of Cursor Variables
 	myX = 0
 	myY = 0
 	hand_state = 1
 
-	MAX_Y = 1
-	MAX_X = 0
-	MIN_Y = 1
+	MAX_Y = 4096
+	MAX_X = 4096
+	MIN_Y = 0
 	MIN_X = 0
 
 
@@ -94,7 +93,8 @@ def main(args):
 	for f in dirlist:
 		if f.endswith('.jpg'):
 			images.append(os.path.join(image_dir,f))
-	main_surface = pygame.display.set_mode((1280,1024),FULLSCREEN)
+	# ~ main_surface = pygame.display.set_mode((1280,1024),FULLSCREEN)
+	main_surface = pygame.display.set_mode((1280,1024))
 	
 	number_of_images = (len(images))
 
@@ -117,18 +117,18 @@ def main(args):
 
 	# test to see if it can load the images
 	
-	print("Testing display output. Press any key to continue.")
-	keepgoing = True
-	while keepgoing:
-		for event in pygame.event.get():
-			if (event.type == pygame.QUIT): 
-				keepgoing = False
-			elif (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE): 
-			# ~ elif (event.type == pygame.KEYDOWN): 
-				#sys.exit()		
-				keepgoing = False
+	# ~ print("Testing display output. Press any key to continue.")
+	# ~ keepgoing = False
+	# ~ while keepgoing:
+		# ~ for event in pygame.event.get():
+			# ~ if (event.type == pygame.QUIT): 
+				# ~ keepgoing = False
+			# ~ elif (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE): 
+			# ~ #elif (event.type == pygame.KEYDOWN): 
+				# ~ #sys.exit()		
+				# ~ keepgoing = False
 		
-	print("If you got to this point, the display probably works.")
+	# ~ print("If you got to this point, the display probably works.")
 	
 	# ~ sys.exit()	
 	
@@ -145,7 +145,7 @@ def main(args):
 				
 		print ('X,Y = ' + str(myX) + ' , ' + str(myY)+ ' ( Q' + str(hand_state) +') at loop #: ' +str(counter))
 		
-		picture = pictures[0]
+		picture = pictures[hand_state -1]
 		main_surface.blit(picture, (0, 0))
 		pygame.display.update()
 		
@@ -192,10 +192,10 @@ def main(args):
 			if(myY > MAX_Y):
 				MAX_Y = myY
 				
-			if(myX < MAX_X):
+			if(myX < MIN_X):
 				MIN_X = myX
 		
-			if(myY < MAX_Y):
+			if(myY < MIN_Y):
 				MIN_Y = myY
 
 		
