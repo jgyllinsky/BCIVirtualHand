@@ -53,6 +53,7 @@ import socket
     
 def main(args):
 
+	
 	## Global Variables
 
 	### Networking Variables
@@ -114,6 +115,7 @@ def main(args):
 	picture = pictures[hand_state]
 	main_surface.blit(picture, (0, 0))
 	pygame.display.update()
+	pygame.display.set_caption("Quadrant Hand Signs")
 
 	# test to see if it can load the images
 	
@@ -148,7 +150,7 @@ def main(args):
 		picture = pictures[hand_state -1]
 		main_surface.blit(picture, (0, 0))
 		pygame.display.update()
-		
+		pygame.display.set_caption("Quadrant Hand Signs")
 		
 		try:
 			d = serverSock.recvfrom(1024)
